@@ -16,7 +16,7 @@ if [ "$(docker ps -aq -f name=db-ycsb-container)" ]; then
     docker start -i db-ycsb-container
 else
     echo "Container db-ycsb-container does not exist. Building and running the container..."
-    # Build the Docker image
-    docker build -t db-ycsb-image .
-    docker run -it --name db-ycsb-container db-ycsb-image
+    # Build the Docker image for amd64 architecture
+    docker build --platform linux/amd64 -t db-ycsb-image .
+    docker run -it --platform linux/amd64 --name db-ycsb-container db-ycsb-image
 fi
