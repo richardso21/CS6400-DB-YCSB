@@ -1,0 +1,6 @@
+[submodule "YCSB-cpp"]
+	path = YCSB-cpp
+	url = git@github.com:richardso21/YCSB-cpp.git
+[submodule "YCSB"]
+	path = YCSB
+	url = git@github.com:richardso21/YCSB.git
