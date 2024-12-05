@@ -25,10 +25,12 @@ RUN apt-get install -y gcc-12 g++-12
 RUN rm -rf /var/lib/apt/lists/*
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+# COPY . /app
 
-# # build terarkdb for cpp tests (TODO: make this conditional based on what test is being run)
+# build terarkdb for cpp tests (compiles on gcc-12)
 # WORKDIR /app/YCSB-cpp/terarkdb/terarkdb
+# RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
+# RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
 # RUN WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
 
 # Set the working directory
