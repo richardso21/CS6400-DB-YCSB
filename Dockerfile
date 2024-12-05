@@ -15,12 +15,11 @@ RUN apt-get install -y \
     maven \
     librocksdb-dev \
     libleveldb-dev \
-    libaio-dev
+    libaio-dev \
+    python-is-python3
 
-# Use gcc-12 instead of 13 (for terarkdb)
+# Install gcc-12 for terarkdb compilation
 RUN apt-get install -y gcc-12 g++-12
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
 
 # Remove apt cache
 RUN rm -rf /var/lib/apt/lists/*
@@ -28,9 +27,9 @@ RUN rm -rf /var/lib/apt/lists/*
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# build terarkdb for cpp tests
-WORKDIR /app/YCSB-cpp/terarkdb/terarkdb
-RUN WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
+# # build terarkdb for cpp tests (TODO: make this conditional based on what test is being run)
+# WORKDIR /app/YCSB-cpp/terarkdb/terarkdb
+# RUN WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
 
 # Set the working directory
 WORKDIR /app
