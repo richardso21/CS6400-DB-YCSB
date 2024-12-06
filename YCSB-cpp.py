@@ -56,7 +56,14 @@ def run_ycsb_benchmark(db: str, workload: str, quiet : bool = False):
     run_command("mkdir -p build", quiet)
     os.chdir("build")
     run_command("make clean", quiet=quiet, error_ok=True)
-    run_command(f"cmake -DBIND_{db.upper()}=1 .. && make -j", quiet)
+
+    binds = [f"-DBIND_{db.upper()}=1"]
+    for i in DB_BINDINGS:
+        if i == db:
+            continue
+        binds.append(f"-DBIND_{i.upper()}=0")
+
+    run_command(f"cmake {" ".join(binds)} .. && make -j", quiet=quiet)
 
     # some db's (e.g. rocksdb) require a defined properties file to be specified
     properties_file = f"-P ../{db}/{db}.properties" if db != "unqlite" else ""
