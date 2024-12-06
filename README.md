@@ -15,3 +15,5 @@
 ### Running Benchmarks
 - For Java projects: `python3 YCSB.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,xodus,halodb,mapdb}`
 - For C++ Projects: `python3 YCSB-cpp.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,unqlite,terarkdb}`
+
+- `-w` refers to the benchmark workload [sequence character](https://github.com/brianfrankcooper/YCSB/tree/master/workloads) 
