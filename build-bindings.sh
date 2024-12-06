@@ -15,12 +15,12 @@ cd YCSB
 mvn -pl site.ycsb:xodus-binding,site.ycsb:mapdb-binding,site.ycsb:halodb-binding,site.ycsb:rocksdb-binding -am clean package -Psource-run
 cd /app
 
-# # build terarkdb w/ gcc-12
-# update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
-# update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
-# cd YCSB-cpp/terarkdb/terarkdb && WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
+# build terarkdb w/ gcc-12
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-12 100
+cd YCSB-cpp/terarkdb/terarkdb && WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
 
-# # reset back
-# update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 101
-# update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 101
-# cd /app
+# reset back
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 101
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 101
+cd /app
