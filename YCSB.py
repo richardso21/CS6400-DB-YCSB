@@ -2,7 +2,7 @@ import argparse, subprocess
 
 parser = argparse.ArgumentParser(description="Command line tool")
 
-parser.add_argument('-w', type=str, required=True, choices=['a', 'b', 'c', 'd'. 'e', 'f'],
+parser.add_argument('-w', type=str, required=True, choices=['a', 'b', 'c', 'd', 'e', 'f'],
                     help="Workload character")
 
 parser.add_argument('-db', type=str, choices=['rocksdb', 'xodus', 'halodb', 'mapdb'],
@@ -13,7 +13,7 @@ args = parser.parse_args()
 
 move_cmd = "cd YCSB"
 load_workload_cmd = f"bin/ycsb.sh load {args.db} -P workloads/workload{args.w}"
-run_workload_cmd = f"bin/ycsb.sh load {args.db} -P workloads/workload{args.w}"
+run_workload_cmd = f"bin/ycsb.sh run {args.db} -P workloads/workload{args.w}"
 
 if args.db == "rocksdb":
     load_workload_cmd += f"rocksdb.dir=/tmp/rocksdb-ycsb-data"

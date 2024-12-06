@@ -34,11 +34,8 @@ COPY . /app
 # RUN WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
 
 # Compile all relevant Java DBs
-# WORKDIR /app/YCSB
-# RUN mvn -pl site.ycsb:mapdb-binding -am clean package -Psource-run
-# RUN mvn -pl site.ycsb:mapdb-binding -am package -Psource-run
-# RUN mvn -pl site.ycsb:halodb-binding -am package -Psource-run
-# RUN mvn -pl site.ycsb:rocksdb-binding -am package -Psource-run
+WORKDIR /app/YCSB
+RUN mvn -pl site.ycsb:xodus-binding,site.ycsb:mapdb-binding,site.ycsb:halodb-binding,site.ycsb:rocksdb-binding -am clean package -Psource-run
 
 # Set the working directory
 WORKDIR /app
