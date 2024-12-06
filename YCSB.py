@@ -16,7 +16,8 @@ load_workload_cmd = f"bin/ycsb.sh load {args.db} -P workloads/workload{args.w}"
 run_workload_cmd = f"bin/ycsb.sh run {args.db} -P workloads/workload{args.w}"
 
 if args.db == "rocksdb":
-    load_workload_cmd += f"rocksdb.dir=/tmp/rocksdb-ycsb-data"
+    load_workload_cmd += f" -p rocksdb.dir=/tmp/rocksdb-ycsb-data"
+    run_workload_cmd += f" -p rocksdb.dir=/tmp/rocksdb-ycsb-data"
 
 combinator = " && "
 complete_cmd = combinator.join([move_cmd, load_workload_cmd, run_workload_cmd])
