@@ -10,15 +10,28 @@
 
 ### Prerequisites
   - Docker
+  - (Optional) x86-64 architecture (for compatibility with some Java bindings)
+    - Apple Silicon is compatible, but benchmarks will be emulated via Rosetta
 
 ### Running The Project
-1. Enter the docker container by running ```./run.sh```
+1. Enter the docker container by running `./run.sh`
+    - This will recursively clone all submodules, spin up the docker container,
+      and mount the current directory to `/app`
 2. Compile YCSB Bindings (this will take a few minutes)
- ```./build_bindings.sh```
+ `./build_bindings.sh`
+    - Specifically, this builds all Java bindings through maven, terarkdb, and speedb
 3. Run benchmarks!
 
 ### Running Benchmarks
 - For Java projects: `python3 YCSB.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,xodus,halodb,mapdb}`
-- For C++ Projects: `python3 YCSB-cpp.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,unqlite,terarkdb}`
+- For C++ Projects: `python3 YCSB-cpp.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,unqlite,terarkdb,speedb}`
 
 - `-w` refers to the benchmark workload [sequence character](https://github.com/brianfrankcooper/YCSB/tree/master/workloads)
+
+### Key Takeaways
+- RocksDB remains a solid choice for most (if not all) workloads
+- Bold claims made by competitors/forks (namely TerarkDB) are overstated
+- C++ bindings are naturally faster than Java counterparts
+  - Probably isn't worth the overhead of linker errors or managing CMake (with the exception of UnQLite)
+- Choose MapDB or UnQLite for a simple API with low resource footprint
+- Speedb seems to be the only promising alternative to RocksDB out of our tested bindings
