@@ -24,3 +24,10 @@ cd YCSB-cpp/terarkdb/terarkdb && WITH_TESTS=OFF WITH_ZNS=OFF ./build.sh
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 101
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 101
 cd /app
+
+# build speedb
+cd YCSB-cpp/speedb/speedb
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make speedb
+cd /app
