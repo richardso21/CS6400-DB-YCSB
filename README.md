@@ -16,4 +16,9 @@
 - For Java projects: `python3 YCSB.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,xodus,halodb,mapdb}`
 - For C++ Projects: `python3 YCSB-cpp.py [-h] -w {a,b,c,d,e,f} -db {rocksdb,unqlite,terarkdb}`
 
-- `-w` refers to the benchmark workload [sequence character](https://github.com/brianfrankcooper/YCSB/tree/master/workloads) 
+- `-w` refers to the benchmark workload [sequence character](https://github.com/brianfrankcooper/YCSB/tree/master/workloads)
+
+### Collecting data for graphing
+- For C++ projects: ```python get_data.py```
+- For Java projects: Comment out the 1 line under each comment saying # C++. Then, uncomment the 1 line under each comment saying # Java. Then run ```python get_data.py```
+Then, use this gist to input the dict outputted by the script: https://gist.github.com/SaatvikAgrawal/6c78464ab4d49ac19e9c61f367fd0d6a
