@@ -50,4 +50,4 @@ for workload in workloads:
         metrics["database"] = database
         # print(metrics)
         data_per_workload[workload].append(metrics)
-# print(data_per_workload)
+print(data_per_workload)
